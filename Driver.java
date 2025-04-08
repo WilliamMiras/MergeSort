@@ -7,12 +7,26 @@ class Node {
     }
 }
 
+class LinkedList {
+    public Node head;
+
+    public LinkedList(Node head) {
+        this.head = head;
+    }
+}
+
 class mergeSort {
     void split(Node head, Node a, Node b) {
         Node temp = head;
 
-        while(temp != null) {
-
+        if(temp == null || temp.next == null){
+            return;
+        }
+        else{
+            while(temp.next.next != null){
+                temp = temp.next.next;
+                b = b.next;
+            }
         }
     }
 
@@ -55,12 +69,10 @@ class mergeSort {
     }
 
     Node mergeSort(Node head) {
-        Node a = head, b = split(head, a, b), c;
-        if(head == null)
-            return null;
-        if (head.next == null)
+        Node a, b = split(head, a, b), c;
+        if(head == null || head.next == null) {
             return head;
-
+        }
         a = mergeSort(a);
         b = mergeSort(b);
         c = merge(a,b);
